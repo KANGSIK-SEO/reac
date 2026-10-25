@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { CheckSquare2, ChevronLeft, ChevronRight, Command, Plus, Sparkles } from "lucide-react";
+import { CheckCircle2, CheckSquare2, ChevronLeft, ChevronRight, Command, Plus, Sparkles } from "lucide-react";
 import { Button } from "./ui";
 
 export function AppLayout() {
@@ -19,6 +19,9 @@ export function AppLayout() {
           </NavLink>
           <NavLink to="/tasks/new" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>
             <Plus size={18} /><span>새 태스크</span>
+          </NavLink>
+          <NavLink to="/tasks/completed" className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}>
+            <CheckCircle2 size={18} /><span>완료한 태스크</span>
           </NavLink>
         </nav>
         <div className="sidebar-bottom">

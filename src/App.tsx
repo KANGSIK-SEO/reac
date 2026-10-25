@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./components/AppLayout";
 import { TaskCreatePage } from "./pages/TaskCreatePage";
+import { CompletedTasksPage } from "./pages/CompletedTasksPage";
 import { TaskDetailPage } from "./pages/TaskDetailPage";
 import { TaskEditPage } from "./pages/TaskEditPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/" element={<Navigate to="/tasks" replace />} />
         <Route path="/tasks" element={<TasksPage />} />
         <Route path="/tasks/new" element={<TaskCreatePage />} />
+        <Route path="/tasks/completed" element={<CompletedTasksPage />} />
         <Route path="/tasks/:id/edit" element={<TaskEditPage />} />
         <Route path="/tasks/:id" element={<TaskDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />

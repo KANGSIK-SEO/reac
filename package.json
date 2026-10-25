@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc --noEmit -p tsconfig.app.json && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "tsc --target ES2020 --module commonjs --strict --skipLibCheck --outDir .test-dist src/types.ts src/lib/taskFilters.ts tests/taskFilters.test.ts && printf '{\"type\":\"commonjs\"}\\n' > .test-dist/package.json && node .test-dist/tests/taskFilters.test.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.0",

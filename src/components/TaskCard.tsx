@@ -8,17 +8,19 @@ export function TaskCard({
   onToggle,
 }: {
   task: Task;
-  onToggle: (task: Task) => void;
+  onToggle?: (task: Task) => void;
 }) {
   return (
     <article className={`task-card ${task.status === "done" ? "task-done" : ""}`}>
-      <button
-        className={`task-check ${task.status === "done" ? "checked" : ""}`}
-        aria-label={task.status === "done" ? "완료 취소" : "완료로 표시"}
-        onClick={() => onToggle(task)}
-      >
-        {task.status === "done" ? <Check size={15} /> : <Circle size={17} />}
-      </button>
+      {onToggle && (
+        <button
+          className={`task-check ${task.status === "done" ? "checked" : ""}`}
+          aria-label={task.status === "done" ? "완료 취소" : "완료로 표시"}
+          onClick={() => onToggle(task)}
+        >
+          {task.status === "done" ? <Check size={15} /> : <Circle size={17} />}
+        </button>
+      )}
       <Link className="task-card-main" to={`/tasks/${task.id}`}>
         <div className="task-card-title-row">
           <h3>{task.title}</h3>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { TaskCard } from "../components/TaskCard";
 import { EmptyState, ErrorState, LoadingState, PageHeader, SearchField, StatCard } from "../components/ui";
 import { updateTask } from "../lib/tasks";
+import { filterTasks } from "../lib/taskFilters";
 import type { Task } from "../types";
 import { useTasks } from "../hooks/useTasks";
 
@@ -17,11 +18,7 @@ export function TasksPage() {
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const doneCount = tasks.filter((task) => task.status === "done").length;
   const visibleTasks = useMemo(
-    () =>
-      tasks.filter((task) => {
-        const matchesText = `${task.title} ${task.description}`.toLowerCase().includes(query.toLowerCase());
-        return matchesText && (filter === "all" || task.status === filter);
-      }),
+    () => filterTasks(tasks, query, filter),
     [tasks, query, filter],
   );
 
